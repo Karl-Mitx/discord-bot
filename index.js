@@ -1,3 +1,17 @@
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Bot activo");
+});
+
+app.listen(3000, () => {
+  console.log("Servidor web activo");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
+
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
 const Parser = require('rss-parser');
@@ -29,7 +43,7 @@ async function checkTweets() {
       lastLink = latest.link;
 
       const channel = await client.channels.fetch(CHANNEL_ID);
-      channel.send(`Nuevo tweet:\n${latest.link}`);
+      channel.send(`Nuevo tweet sobre filtraciones:\n${latest.link}`);
     }
 
   } catch (err) {
